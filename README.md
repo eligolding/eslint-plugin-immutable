@@ -85,13 +85,22 @@ const transformedPoint = { ...point, x: 99 };
 
 You can enable this syntax using the [syntax-object-rest-spread](https://babeljs.io/docs/plugins/syntax-object-rest-spread/) [Babel](https://babeljs.io/) plug-in.
 
-Another thing this rule prevents is using the `push` method on arrays. Using push will mutate the array. If you want to add an element to an array, a better way is to use `concat`, which will return a new array with the new element added, and leave the original array intact.
+### no-push
+
+Another thing to look out for is mutating arrays. When adding an element to an array using the `push` method, the array will be mutated, and any reference to that array will contain those changes.
 
 ```JavaScript
 const myArray = [1, 2, 3];
-myArray.push(4) // <- Mutating the original array
+const myOtherArray = myArray;
+myArray.push(4) // <- both arrays will have that change 
+```
 
-const newArray = myArray.concat(4); // concat returns a new array and doesn't affect the original array.
+A better way to add an element to an array is to use `concat`, which will return a new array with the new element added, and leave the original array intact.
+
+```JavaScript
+const myArray = [1, 2, 3];
+const myOtherArray = myArray;
+myArray = myArray.concat(4) // <- Will not mutate any other reference to the original array
 ```
 
 ## Supplementary ESLint Rules to Enable
