@@ -24,6 +24,11 @@ module.exports = {
           if(node.left.type === "MemberExpression") {
             context.report(node, "No object mutation allowed.");
           }
+        },
+        "MemberExpression": function(node) {
+          if (node.property.name === "push") {
+            context.report(node, "No array mutation allowed, use concat to create a new array.");
+          }
         }
       }
     }
