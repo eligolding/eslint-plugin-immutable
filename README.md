@@ -99,8 +99,7 @@ A better way to add an element to an array is to use `concat`, which will return
 
 ```JavaScript
 const myArray = [1, 2, 3];
-const myOtherArray = myArray;
-myArray = myArray.concat(4) // <- Will not mutate any other reference to the original array
+const newArray = myArray.concat(4) // <- Will not mutate any other reference to the original array
 ```
 
 ## Supplementary ESLint Rules to Enable
